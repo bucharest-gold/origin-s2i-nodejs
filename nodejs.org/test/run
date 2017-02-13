@@ -101,6 +101,11 @@ test_s2i_usage() {
   s2i usage ${s2i_args} ${IMAGE_TAG} &>/dev/null
 }
 
+test_s2i_incremental() {
+  echo "Testing s2i build incremental..."
+  s2i build --incremental=true ${s2i_args} file://${test_dir}/test-app ${IMAGE_TAG} ${IMAGE_NAME}-testapp
+}
+
 test_docker_run_usage() {
   echo "Testing 'docker run' usage..."
   docker run ${IMAGE_TAG} &>/dev/null
@@ -200,6 +205,10 @@ check_result $?
 
 # Verify the 'usage' script is working properly when running the base image with 'docker run ...'
 test_docker_run_usage
+check_result $?
+
+# Verify the if the build is incremental.
+test_s2i_incremental
 check_result $?
 
 # Verify that the HTTP connection can be established to test application container

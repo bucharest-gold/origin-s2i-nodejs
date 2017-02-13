@@ -47,6 +47,12 @@ if [ ! -z "$NPM_MIRROR" ]; then
 	npm config set registry $NPM_MIRROR
 fi
 
+# Restore node modules from the previous build (if they exist).
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/ /opt/app-root/src/test-app/
+fi
+
 echo "---> Building your Node application from source"
 npm install -d
 
