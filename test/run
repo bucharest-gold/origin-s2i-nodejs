@@ -48,13 +48,6 @@ prepare() {
     echo "ERROR: The image ${IMAGE_TAG} must exist before this script is executed."
     exit 1
   fi
-  # TODO: STI build require the application is a valid 'GIT' repository, we
-  # should remove this restriction in the future when a file:// is used.
-  pushd ${test_dir}/test-app >/dev/null
-  git init
-  git config user.email "build@localhost" && git config user.name "builder"
-  git add -A && git commit --no-gpg-sign -m "Sample commit"
-  popd >/dev/null
 }
 
 run_test_application() {
@@ -71,7 +64,6 @@ cleanup() {
   if image_exists ${IMAGE_NAME}-testapp; then
     docker rmi -f ${IMAGE_NAME}-testapp
   fi
-  rm -rf ${test_dir}/test-app/.git
   cids=`ls -1 *.cid 2>/dev/null | wc -l`
   if [ $cids != 0 ]
   then
