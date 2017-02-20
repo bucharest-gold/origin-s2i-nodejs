@@ -1,6 +1,6 @@
 dist: trusty
 before_script:
-  - sudo apt install python-pip
+  # - sudo apt install python-pip
   - pip install docker-squash
   - wget https://github.com/openshift/source-to-image/releases/download/v1.1.4/source-to-image-1.1.4-870b273-linux-amd64.tar.gz
   - tar xvzOf source-to-image-1.1.4-870b273-linux-amd64.tar.gz > s2i.bin
