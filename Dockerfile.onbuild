@@ -3,8 +3,6 @@ FROM openshift/base-centos7
 # This image provides a Node.JS environment you can use to run your Node.JS
 # applications.
 
-MAINTAINER Lance Ball <lball@redhat.com>
-
 EXPOSE 8080
 
 # This image will be initialized with "npm run $NPM_RUN"
@@ -26,7 +24,8 @@ LABEL io.k8s.description="Platform for building and running Node.js applications
       io.k8s.display-name="Node.js $NODE_VERSION" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,nodejs,nodejs-$NODE_VERSION" \
-      com.redhat.deployments-dir="/opt/app-root/src"
+      com.redhat.deployments-dir="/opt/app-root/src" \
+      maintainer="Lance Ball <lball@redhat.com>"
 
 # Download and install a binary from nodejs.org
 # Add the gpg keys listed at https://github.com/nodejs/node
