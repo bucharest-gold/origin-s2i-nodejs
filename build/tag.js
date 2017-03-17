@@ -66,10 +66,12 @@ function processImageData (data) {
       if (imageData) {
         tagImage(imageData.Id.split(':')[1], image, version);
         if (releases[version].lts) {
+          if (version == versions[versions.length - 2]) {
+            tagImage(imageData.Id.split(':')[1], image, 'lts');
+          }
           tagImage(imageData.Id.split(':')[1], image, releases[version].lts);
         }
         if (version === current) {
-          tagImage(imageData.Id.split(':')[1], image, 'current');
           tagImage(imageData.Id.split(':')[1], image, 'latest');
         }
       } else {
