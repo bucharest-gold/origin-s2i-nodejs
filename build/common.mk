@@ -4,6 +4,8 @@ build = build/build.sh
 
 ifeq ($(TARGET),fedora)
 	OS := fedora
+else ifeq ($(TARGET),atomic)
+	OS := rhel7-atomic
 else
 	OS := centos7
 endif
@@ -24,7 +26,7 @@ build: prepare
 .PHONY: prepare
 prepare:
 	npm install
-	node build/prepare.js
+	$(script_env) node build/prepare.js
 
 .PHONY: all
 all:
@@ -52,4 +54,4 @@ test: prepare
 
 .PHONY: clean
 clean:
-	docker rmi -f `docker images |tr -s ' ' | grep -e 'centos7-s2i-nodejs\|centos7-s2i-nodejs-candidate\|centos7-nodejs\|<none>' | cut -d' ' -s -f3`
+	docker rmi -f `docker images |tr -s ' ' | grep -e '${OS}-s2i-nodejs\|${OS}-s2i-nodejs-candidate\|${OS}-nodejs\|<none>' | cut -d' ' -s -f3`

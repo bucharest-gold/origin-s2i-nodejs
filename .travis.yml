@@ -14,7 +14,9 @@ before_script:
   - sudo mv oc.bin /usr/bin/oc
   - sudo chmod 755 /usr/bin/oc
 script:
-  - make test
+  - make test TARGET=centos7
+    make test TARGET=atomic
+    make test TARGET=fedora
   - test/onbuild-test
   - test/onbuild-openshift
 notifications:

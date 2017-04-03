@@ -21,8 +21,8 @@ const semver = require('semver');
 const _ = require('underscore');
 const Promise = require('fidelity');
 
-const files = ['centos7-s2i-nodejs.json:nodejs',
-               'image-streams.json:centos7-s2i-nodejs'];
+const files = [`${process.env.OS}-s2i-nodejs.json:nodejs`,
+               `image-streams.json:${process.env.OS}-s2i-nodejs`];
 
 roi.get({ endpoint: 'https://nodejs.org/dist/index.json' })
    .then(response => findLatest(response.body))

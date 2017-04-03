@@ -56,4 +56,14 @@ echo "---> Building your Node application from source"
 npm install -s
 
 # Fix source directory permissions
-fix-permissions ./
+# fix-permissions ./
+# Allow this script to fail without failing a build
+#set +e
+
+# Fix permissions on the given directory to allow group read/write of
+# regular files and execute of directories.
+#chgrp -R 0 .;
+#find -L . -xtype l -exec chgrp 0 {} \;
+#chmod -R g+rw .;
+#find -L . -xtype l -exec chmod g+rw {} \;
+#find . -type d -exec chmod g+x {} +

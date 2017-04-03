@@ -12,10 +12,10 @@
 OS=${1-$OS}
 VERSION=${2-$VERSION}
 
-DOCKERFILE="Dockerfile"
+DOCKERFILE="Dockerfile."${OS}
 if [[ ! -z "${ONBUILD}" ]]; then
   BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
-  DOCKERFILE+=".onbuild"
+  DOCKERFILE+="${OS}.onbuild"
 fi
 
 # Perform docker build but append the LABEL with GIT commit id at the end

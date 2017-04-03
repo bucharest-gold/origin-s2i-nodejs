@@ -14,11 +14,11 @@ const releases = require('../releases.json');
 
 fs.mkdir('target', (err) => {
   if (err && err.code !== 'EEXIST') return console.log(e);
-  process('Dockerfile', releases);
-  process('Dockerfile.onbuild', releases);
+  processFiles(`Dockerfile.${process.env.OS}`, releases);
+  processFiles(`Dockerfile.${process.env.OS}.onbuild`, releases);
 });
 
-function process (file, releases) {
+function processFiles (file, releases) {
   fs.readFile(file, 'utf-8', (err, txt) => {
     _.each(_.keys(releases), (version) => {
       const output = transform(txt, releases[version]);
