@@ -41,7 +41,7 @@ RUN set -ex && \
   ; do \
     gpg -q --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
   done && \
-  INSTALL_PKGS="bzip2 nss_wrapper" && \
+  INSTALL_PKGS="nss_wrapper" && \
   yum -q -y install epel-release && \
   yum -q install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
   rpm -V $INSTALL_PKGS && \
