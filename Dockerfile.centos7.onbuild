@@ -68,6 +68,6 @@ ONBUILD RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
 ONBUILD USER 1001
 
 # Install the app
-ONBUILD RUN npm install -s
+ONBUILD RUN npm -s install
 
 CMD ["/bin/bash", "-c", "npm run -d $NPM_RUN" ]
