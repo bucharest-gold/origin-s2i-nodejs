@@ -37,7 +37,7 @@ function squash {
   #        compatibility issues
   easy_install -v --user docker_py==1.6.0 docker-squash==1.0.5
   base=$(awk '/^FROM/{print $2}' $1)
-  docker-squash -f $base ${IMAGE_NAME}:${version} -t ${IMAGE_NAME}:${version}
+  docker-squash -f $base ${IMAGE_NAME}:${version} -t ${IMAGE_NAME}:${version} &>/dev/null
 }
 
 # Specify a VERSION variable to build a specific nodejs.org release
