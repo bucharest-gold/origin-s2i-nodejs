@@ -35,9 +35,11 @@ function docker_build_with_version {
 function squash {
   # FIXME: We have to use the exact versions here to avoid Docker client
   #        compatibility issues
-  easy_install -v --user docker_py==1.6.0 docker-squash==1.0.5
+  easy_install -q --user docker_py==1.6.0 docker-squash==1.0.5
   base=$(awk '/^FROM/{print $2}' $1)
+  echo "Squashing layers if necessary..."
   docker-squash -f $base ${IMAGE_NAME}:${version} -t ${IMAGE_NAME}:${version} &>/dev/null
+  echo "Done."
 }
 
 # Specify a VERSION variable to build a specific nodejs.org release
