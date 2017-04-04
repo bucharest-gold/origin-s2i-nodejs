@@ -43,7 +43,7 @@ RUN set -ex && \
   tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 && \
   HOME=/opt/app-root/src && \
   mkdir -p ${HOME} && \
-  npm install -g npm@${NPM_VERSION} -s && \
+  npm install -g npm@${NPM_VERSION} -s &>/dev/null && \
   find /usr/local/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   rm -rf ~/node-${NODE_VERSION}-linux-x64.tar.gz ~/SHASUMS256.txt.asc /tmp/node-${NODE_VERSION} ~/.npm ~/.node-gyp ~/.gnupg \
   /usr/share/man /tmp/* /usr/local/lib/node_modules/npm/man /usr/local/lib/node_modules/npm/doc /usr/local/lib/node_modules/npm/html && \
