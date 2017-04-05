@@ -2,7 +2,7 @@ dist: trusty
 before_script:
   - sudo apt-get purge docker-engine
   - sudo apt-get autoremove --purge docker-engine
-  - $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-trusty main'
   - sudo apt-get update
   - sudo apt-get install docker-ce
