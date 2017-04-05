@@ -73,6 +73,9 @@ COPY ./contrib/ /opt/app-root
 
 ONBUILD COPY package.json /opt/app-root/src
 ONBUILD COPY . /opt/app-root/src
-ONBUILD RUN npm install
+
+WORKDIR /opt/app-root/src
+
+ONBUILD RUN npm -s install
 
 CMD ["/bin/bash", "-c", "npm run -d $NPM_RUN" ]

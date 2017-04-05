@@ -56,6 +56,8 @@ ONBUILD COPY . /opt/app-root/src
 ONBUILD RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
 ONBUILD USER 1001
 
-ONBUILD RUN npm install -s
+WORKDIR /opt/app-root/src
+
+ONBUILD RUN npm -s install
 
 CMD ["/bin/bash", "-c", "npm run -d $NPM_RUN" ]
