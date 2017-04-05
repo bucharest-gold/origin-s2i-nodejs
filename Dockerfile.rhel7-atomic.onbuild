@@ -36,7 +36,7 @@ RUN set -ex && \
   echo "default:x:1001:0:Default application user:${HOME}:/bin/bash" | cat >> /etc/passwd && \
   mkdir -p ${HOME} && \
   cd ${HOME} && \
-  chown -R 1001:0 /opt/app-root
+  chown -R 1001:0 /opt/app-root && \
   for key in \
      9554F04D7259F04124DE6B476D5A82AC7E37093B \
      94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
