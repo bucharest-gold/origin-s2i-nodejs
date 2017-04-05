@@ -35,7 +35,7 @@ roi.get({ endpoint: 'https://nodejs.org/dist/index.json' })
 function pullBase () {
   return new Promise((resolve, reject) => {
     const docker = spawn('docker',
-                         ['pull', 'openshift/base-centos7'],
+                         ['pull', process.env.FROM_IMAGE],
                          { stdio: 'inherit' });
     docker.on('error', reject);
     docker.on('close', (code) => {
@@ -171,7 +171,7 @@ function dockerImageTag (version) {
     annotations: annotationsFor(version, version),
     from: {
             kind: 'DockerImage',
-            name: `bucharestgold/centos7-s2i-nodejs:${version}`
+            name: `bucharestgold/${process.env.OS}-s2i-nodejs:${version}`
           }
   };
 }

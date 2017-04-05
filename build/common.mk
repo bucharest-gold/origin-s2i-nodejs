@@ -4,18 +4,23 @@ build = build/build.sh
 
 ifeq ($(TARGET),fedora)
 	OS := fedora
+	FROM_IMAGE := fedora
 else ifeq ($(TARGET),atomic)
 	OS := rhel7-atomic
+	FROM_IMAGE := registry.access.redhat.com/rhel7/rhel-atomic
 else ifeq ($(TARGET),rhel7)
 	OS := rhel7
+	FROM_IMAGE := registry.access.redhat.com/rhel7
 else
 	OS := centos7
+	FROM_IMAGE := openshift/base-centos7
 endif
 
 script_env = \
 	SKIP_SQUASH="$(SKIP_SQUASH)"                      \
 	VERSIONS="$(VERSIONS)"                            \
 	OS="$(OS)"                                        \
+	FROM_IMAGE="$(FROM_IMAGE)"                        \
 	NAMESPACE="$(NAMESPACE)"                          \
 	BASE_IMAGE_NAME="$(BASE_IMAGE_NAME)"              \
 	ONBUILD_IMAGE_NAME="$(ONBUILD_IMAGE_NAME)"        \
