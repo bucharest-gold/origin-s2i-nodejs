@@ -1,12 +1,12 @@
 dist: trusty
 before_script:
-  - sudo apt-get purge docker-engine
-  - sudo apt-get autoremove --purge docker-engine
-  - sudo apt-get -y install apt-transport-https ca-certificates
-  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - sudo apt-get update
-  - sudo apt-get -y install docker-ce
+#  - sudo apt-get purge docker-engine
+#  - sudo apt-get autoremove --purge docker-engine
+#  - sudo apt-get -y install apt-transport-https ca-certificates
+#  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+#  - sudo apt-get update
+#  - sudo apt-get -y install docker-ce
   - sudo mount --make-shared /
   - sudo service docker stop
   - sudo sed -i 's/DOCKER_OPTS=\"/DOCKER_OPTS=\"--insecure-registry 172.30.0.0\/16 /' /etc/default/docker
