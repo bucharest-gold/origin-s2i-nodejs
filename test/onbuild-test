@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "---> onbuild using centos7"
 git clone https://github.com/bucharest-gold/s2i-nodejs.git
 cd s2i-nodejs
-docker build -t tests2inodejs .
+docker build -t tests2inodejscentos7 .
+
+echo "---> onbuild using fedora"
+
+docker build --file Dockerfile.fedora -t tests2inodejsfedora .
