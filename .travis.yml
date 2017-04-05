@@ -17,6 +17,7 @@ script:
   - make test TARGET=centos7
   - make test TARGET=atomic
   - make test TARGET=fedora
+  - make test TARGET=rhel7
   - test/onbuild-test
   - test/onbuild-openshift
 notifications:

@@ -6,6 +6,8 @@ ifeq ($(TARGET),fedora)
 	OS := fedora
 else ifeq ($(TARGET),atomic)
 	OS := rhel7-atomic
+else ifeq ($(TARGET),rhel7)
+	OS := rhel7
 else
 	OS := centos7
 endif
