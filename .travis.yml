@@ -30,6 +30,6 @@ script:
   - make onbuild TARGET=fedora VERSIONS=7.8.0
   - make onbuild TARGET=rhel7 VERSIONS=7.8.0
   - test/onbuild-test
-#  - test/onbuild-openshift
+  - test/onbuild-openshift
 notifications:
   irc: "chat.freenode.net#brass-monkey"
