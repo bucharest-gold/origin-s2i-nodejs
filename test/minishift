@@ -1,7 +1,7 @@
 #!/bin/bash
 
-minishift start
-
+#minishift start
+oc cluster up
 #echo "---> Creating s2i-nodejs build with centos7"
 #oc new-app bucharestgold/centos7-s2i-nodejs-candidate:7.8.0~https://github.com/bucharest-gold/s2i-nodejs.git
 #sleep 60
@@ -41,4 +41,5 @@ echo "---> App running"
 #printf "\n"
 #echo "---> App running"
 
-minishift stop
+#minishift stop
+oc cluster down
