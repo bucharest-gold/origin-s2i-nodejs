@@ -14,9 +14,9 @@ oc cluster up
 oc new-project fedora
 echo "---> Creating s2i-nodejs build with fedora"
 oc new-app bucharestgold/fedora-s2i-nodejs-candidate:7.8.0~https://github.com/bucharest-gold/s2i-nodejs.git
-sleep 60
+sleep 180
 oc expose svc/s2inodejs
-sleep 60
+sleep 120
 curl $(oc get routes | awk '{print $2}' | grep xip.io)
 printf "\n"
 echo "---> App running"
