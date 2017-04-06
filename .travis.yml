@@ -17,10 +17,10 @@ before_script:
   - sudo mv oc.bin /usr/bin/oc
   - sudo chmod 755 /usr/bin/oc
 script:
-  - make test TARGET=centos7
-  - make test TARGET=atomic
-  - make test TARGET=fedora
-  - make test TARGET=rhel7
+  - make test TARGET=centos7 VERSIONS=7.8.0
+  - make test TARGET=atomic VERSIONS=7.8.0
+  - make test TARGET=fedora VERSIONS=7.8.0
+  - make test TARGET=rhel7 VERSIONS=7.8.0
   - make onbuild TARGET=centos7 VERSIONS=7.8.0
   - make onbuild TARGET=atomic VERSIONS=7.8.0
   - make onbuild TARGET=fedora VERSIONS=7.8.0
