@@ -64,6 +64,8 @@ RUN set -ex && \
     /usr/share/man /tmp/* /usr/local/lib/node_modules/npm/man /usr/local/lib/node_modules/npm/doc /usr/local/lib/node_modules/npm/html && \
   rpm -e gzip-1.5-8.el7.x86_64
 
+USER 1001
+
 # Each language image can have 'contrib' a directory with extra files needed to
 # run and build the applications.
 COPY ./contrib/ /opt/app-root
@@ -72,7 +74,6 @@ ONBUILD COPY package.json /opt/app-root/src
 ONBUILD COPY . /opt/app-root/src
 
 ONBUILD RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
-USER 1001
 
 WORKDIR /opt/app-root/src
 
