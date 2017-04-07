@@ -32,6 +32,8 @@ LABEL io.k8s.description="Platform for building and running Node.js applications
 # Download and install a binary from nodejs.org
 # Add the gpg keys listed at https://github.com/nodejs/node
 RUN set -ex && \
+  HOME=/opt/app-root/src && \
+  mkdir -p ${HOME} && \
   for key in \
      9554F04D7259F04124DE6B476D5A82AC7E37093B \
      94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
@@ -54,8 +56,6 @@ RUN set -ex && \
   curl -o SHASUMS256.txt.asc -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc && \
   gpg --batch -d SHASUMS256.txt.asc | grep " node-${NODE_VERSION}-linux-x64.tar.gz\$" | sha256sum -c - && \
   tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 && \
-  HOME=/opt/app-root/src && \
-  mkdir -p ${HOME} && \
   npm install -g npm@${NPM_VERSION} -s && \
   find /usr/local/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   rm -rf ~/node-${NODE_VERSION}-linux-x64.tar.gz ~/SHASUMS256.txt.asc /tmp/node-${NODE_VERSION} ~/.npm ~/.node-gyp ~/.gnupg \
