@@ -2,24 +2,24 @@
 
 oc cluster up
 
-echo "FROM bucharestgold/centos7-nodejs:7.8.0" > Dockerfile
-echo "---> New build with centos7"
-oc new-build --binary --name=s2inodejs -l app=s2inodejs
-npm install
-oc start-build s2inodejs --from-dir=. --follow
-oc new-app s2inodejs -l app=s2inodejs
-sleep 120
-oc expose svc/s2inodejs
+#echo "FROM bucharestgold/centos7-nodejs:7.8.0" > Dockerfile
+#echo "---> New build with centos7"
+#oc new-build --binary --name=s2inodejs -l app=s2inodejs
+#npm install
+#oc start-build s2inodejs --from-dir=. --follow
+#oc new-app s2inodejs -l app=s2inodejs
+#sleep 120
+#oc expose svc/s2inodejs
 
-oc new-project fedora
-echo "FROM bucharestgold/fedora-nodejs:7.8.0" > Dockerfile
-echo "---> New build with fedora"
-oc new-build --binary --name=s2inodejs -l app=s2inodejs
-npm install
-oc start-build s2inodejs --from-dir=. --follow
-oc new-app s2inodejs -l app=s2inodejs
-sleep 120
-oc expose svc/s2inodejs
+#oc new-project fedora
+#echo "FROM bucharestgold/fedora-nodejs:7.8.0" > Dockerfile
+#echo "---> New build with fedora"
+#oc new-build --binary --name=s2inodejs -l app=s2inodejs
+#npm install
+#oc start-build s2inodejs --from-dir=. --follow
+#oc new-app s2inodejs -l app=s2inodejs
+#sleep 120
+#oc expose svc/s2inodejs
 
 oc new-project atomic
 echo "FROM bucharestgold/rhel7-atomic-nodejs:7.8.0" > Dockerfile
@@ -31,14 +31,14 @@ oc new-app s2inodejs -l app=s2inodejs
 sleep 120
 oc expose svc/s2inodejs
 
-oc new-project rhel
-echo "FROM bucharestgold/rhel7-nodejs:7.8.0" > Dockerfile
-echo "---> New build with rhel7"
-oc new-build --binary --name=s2inodejs -l app=s2inodejs
-npm install
-oc start-build s2inodejs --from-dir=. --follow
-oc new-app s2inodejs -l app=s2inodejs
-sleep 120
-oc expose svc/s2inodejs
+#oc new-project rhel
+#echo "FROM bucharestgold/rhel7-nodejs:7.8.0" > Dockerfile
+#echo "---> New build with rhel7"
+#oc new-build --binary --name=s2inodejs -l app=s2inodejs
+#npm install
+#oc start-build s2inodejs --from-dir=. --follow
+#oc new-app s2inodejs -l app=s2inodejs
+#sleep 120
+#oc expose svc/s2inodejs
 
 oc cluster down
