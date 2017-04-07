@@ -8,7 +8,8 @@ EXPOSE 8080
 # This image will be initialized with "npm run $NPM_RUN"
 # See https://docs.npmjs.com/misc/scripts, and your repo's package.json
 # file for possible values of NPM_RUN
-ENV NPM_RUN=start \
+ENV HOME=/opt/app-root/src \
+    NPM_RUN=start \
     NODE_VERSION= \
     NPM_VERSION= \
     V8_VERSION= \
@@ -32,9 +33,9 @@ LABEL io.k8s.description="Platform for building and running Node.js applications
 # Download and install a binary from nodejs.org
 # Add the gpg keys listed at https://github.com/nodejs/node
 RUN set -ex && \
-  echo "default:x:1001:0:Default application user:/opt/app-root/src:/bin/bash" | cat >> /etc/passwd && \
-  HOME=/opt/app-root/src && \
+  echo "default:x:1001:0:Default application user:${HOME}:/bin/bash" | cat >> /etc/passwd && \
   mkdir -p ${HOME} && \
+  cd ${HOME} && \
   chown -R 1001:0 /opt/app-root && \
   for key in \
      9554F04D7259F04124DE6B476D5A82AC7E37093B \
@@ -72,8 +73,6 @@ COPY ./contrib/ /opt/app-root
 
 ONBUILD COPY package.json /opt/app-root/src
 ONBUILD COPY . /opt/app-root/src
-
-ONBUILD RUN chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
 
 WORKDIR /opt/app-root/src
 
