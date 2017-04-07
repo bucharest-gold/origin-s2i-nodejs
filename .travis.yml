@@ -1,9 +1,5 @@
 dist: trusty
 before_script:
-  - wget https://github.com/minishift/minishift/releases/download/v1.0.0-rc.1/minishift-1.0.0-rc.1-linux-amd64.tgz
-  - tar xvzOf minishift-1.0.0-rc.1-linux-amd64.tgz > minishift.bin
-  - sudo mv minishift.bin /usr/bin/minishift
-  - sudo chmod 755 /usr/bin/minishift
   - sudo mount --make-shared /
   - sudo service docker stop
   - sudo sed -i 's/DOCKER_OPTS=\"/DOCKER_OPTS=\"--insecure-registry 172.30.0.0\/16 /' /etc/default/docker
@@ -18,14 +14,14 @@ before_script:
   - sudo mv oc.bin /usr/bin/oc
   - sudo chmod 755 /usr/bin/oc
 script:
-#  - make test TARGET=centos7 VERSIONS=7.8.0
-#  - make test TARGET=atomic VERSIONS=7.8.0
+  - make test TARGET=centos7 VERSIONS=7.8.0
+  - make test TARGET=atomic VERSIONS=7.8.0
   - make test TARGET=fedora VERSIONS=7.8.0
-#  - make test TARGET=rhel7 VERSIONS=7.8.0
+  - make test TARGET=rhel7 VERSIONS=7.8.0
   - make onbuild TARGET=centos7 VERSIONS=7.8.0
-#  - make onbuild TARGET=atomic VERSIONS=7.8.0
+  - make onbuild TARGET=atomic VERSIONS=7.8.0
   - make onbuild TARGET=fedora VERSIONS=7.8.0
-#  - make onbuild TARGET=rhel7 VERSIONS=7.8.0
+  - make onbuild TARGET=rhel7 VERSIONS=7.8.0
   - test/onbuild-test
   - test/openshift-test
 notifications:
