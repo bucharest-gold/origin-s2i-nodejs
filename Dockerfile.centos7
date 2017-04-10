@@ -29,7 +29,7 @@ LABEL io.k8s.description="Platform for building and running Node.js applications
 
 # Download and install a binary from nodejs.org
 # Add the gpg keys listed at https://github.com/nodejs/node
-RUN set -ex && \
+RUN set -ex ; \
   for key in \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
     FD3A5288F042B6850C66B31F09FE44734EB7990E \
@@ -41,18 +41,18 @@ RUN set -ex && \
   ; do \
     gpg -q --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
     echo "$key:6" | gpg --import-ownertrust; \
-  done && \
-  INSTALL_PKGS="nss_wrapper" && \
-  yum -q -y install epel-release && \
-  yum -q install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
-  rpm -V $INSTALL_PKGS && \
-  yum -q clean all -y && \
-  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz && \
-  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc && \
-  gpg --verify SHASUMS256.txt.asc && \
-  grep " node-${NODE_VERSION}-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - && \
-  tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 && \
-  npm install -g npm@${NPM_VERSION} -s &>/dev/null && \
+  done ; \
+  INSTALL_PKGS="nss_wrapper" ; \
+  yum -q -y install epel-release ; \
+  yum -q install -y --setopt=tsflags=nodocs $INSTALL_PKGS ; \
+  rpm -V $INSTALL_PKGS ; \
+  yum -q clean all -y ; \
+  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz ; \
+  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc ; \
+  gpg --verify SHASUMS256.txt.asc ; \
+  grep " node-${NODE_VERSION}-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - ; \
+  tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 ; \
+  npm install -g npm@${NPM_VERSION} -s &>/dev/null ; \
   find /usr/local/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   rm -rf ~/node-${NODE_VERSION}-linux-x64.tar.gz ~/SHASUMS256.txt.asc /tmp/node-${NODE_VERSION} ~/.npm ~/.node-gyp ~/.gnupg \
     /usr/share/man /tmp/* /usr/local/lib/node_modules/npm/man /usr/local/lib/node_modules/npm/doc /usr/local/lib/node_modules/npm/html

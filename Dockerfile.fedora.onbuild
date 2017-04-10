@@ -23,9 +23,9 @@ LABEL io.k8s.description="Platform for building and running Node.js applications
       com.redhat.deployments-dir="/opt/app-root/src" \
       maintainer="Lance Ball <lball@redhat.com>"
 
-RUN set -ex && \
-  dnf -q install -y --setopt=tsflags=nodocs nss_wrapper gpg findutils && \
-  dnf -q clean all -y && \
+RUN set -ex ; \
+  dnf -q install -y --setopt=tsflags=nodocs nss_wrapper gpg findutils ; \
+  dnf -q clean all -y ; \
   for key in \
     94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
     FD3A5288F042B6850C66B31F09FE44734EB7990E \
@@ -37,19 +37,19 @@ RUN set -ex && \
   ; do \
     gpg -q --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
     echo "$key:6" | gpg --import-ownertrust; \
-  done && \
-  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz && \
-  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc && \
-  gpg --verify SHASUMS256.txt.asc && \
-  grep " node-${NODE_VERSION}-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - && \
-  tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 && \
-  HOME=/opt/app-root/src && \
-  mkdir -p ${HOME} && \
-  npm install -g npm@${NPM_VERSION} -s && \
+  done ; \
+  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz ; \
+  curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc ; \
+  gpg --verify SHASUMS256.txt.asc ; \
+  grep " node-${NODE_VERSION}-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - ; \
+  tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 ; \
+  HOME=/opt/app-root/src ; \
+  mkdir -p ${HOME} ; \
+  npm install -g npm@${NPM_VERSION} -s ; \
   find /usr/local/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
   rm -rf ~/node-${NODE_VERSION}-linux-x64.tar.gz ~/SHASUMS256.txt.asc /tmp/node-${NODE_VERSION} ~/.npm ~/.node-gyp ~/.gnupg \
-  /usr/share/man /tmp/* /usr/local/lib/node_modules/npm/man /usr/local/lib/node_modules/npm/doc /usr/local/lib/node_modules/npm/html && \
-  echo "default:x:1001:0:Default application user:/opt/app-root/src:/bin/bash" | cat >> /etc/passwd && \
+  /usr/share/man /tmp/* /usr/local/lib/node_modules/npm/man /usr/local/lib/node_modules/npm/doc /usr/local/lib/node_modules/npm/html ; \
+  echo "default:x:1001:0:Default application user:/opt/app-root/src:/bin/bash" | cat >> /etc/passwd ; \
   chown -R 1001:0 /opt/app-root
 
 COPY ./contrib/ /opt/app-root
