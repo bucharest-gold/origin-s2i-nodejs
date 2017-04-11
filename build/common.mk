@@ -3,13 +3,10 @@ SKIP_SQUASH?=0
 build = build/build.sh
 
 ifeq ($(OS),fedora)
-	OS := fedora
 	FROM_IMAGE := fedora
-else ifeq ($(OS),atomic)
-	OS := rhel7-atomic
+else ifeq ($(OS),rhel7-atomic)
 	FROM_IMAGE := registry.access.redhat.com/rhel7/rhel-atomic
 else ifeq ($(OS),rhel7)
-	OS := rhel7
 	FROM_IMAGE := registry.access.redhat.com/rhel7
 else
 	OS := centos7
