@@ -2,13 +2,13 @@ SKIP_SQUASH?=0
 
 build = build/build.sh
 
-ifeq ($(TARGET),fedora)
+ifeq ($(OS),fedora)
 	OS := fedora
 	FROM_IMAGE := fedora
-else ifeq ($(TARGET),atomic)
+else ifeq ($(OS),atomic)
 	OS := rhel7-atomic
 	FROM_IMAGE := registry.access.redhat.com/rhel7/rhel-atomic
-else ifeq ($(TARGET),rhel7)
+else ifeq ($(OS),rhel7)
 	OS := rhel7
 	FROM_IMAGE := registry.access.redhat.com/rhel7
 else
@@ -24,6 +24,7 @@ script_env = \
 	NAMESPACE="$(NAMESPACE)"                          \
 	BASE_IMAGE_NAME="$(BASE_IMAGE_NAME)"              \
 	ONBUILD_IMAGE_NAME="$(ONBUILD_IMAGE_NAME)"        \
+	VALID_OS="$(VALID_OS)"                            \
 	VERSION="$(VERSION)"
 
 .PHONY: build

@@ -14,14 +14,14 @@ before_script:
   - sudo mv oc.bin /usr/bin/oc
   - sudo chmod 755 /usr/bin/oc
 script:
-  - make test TARGET=centos7 VERSION=7.8.0
-  - make test TARGET=atomic VERSION=7.8.0
-  - make test TARGET=fedora VERSION=7.8.0
-  - make test TARGET=rhel7 VERSION=7.8.0
-  - make onbuild TARGET=centos7 VERSION=7.8.0
-  - make onbuild TARGET=atomic VERSION=7.8.0
-  - make onbuild TARGET=fedora VERSION=7.8.0
-  - make onbuild TARGET=rhel7 VERSION=7.8.0
+  - make test OS=centos7 VERSION=7.8.0
+  - make test OS=atomic VERSION=7.8.0
+  - make test OS=fedora VERSION=7.8.0
+  - make test OS=rhel7 VERSION=7.8.0
+  - make onbuild OS=centos7 VERSION=7.8.0
+  - make onbuild OS=atomic VERSION=7.8.0
+  - make onbuild OS=fedora VERSION=7.8.0
+  - make onbuild OS=rhel7 VERSION=7.8.0
   - test/onbuild-test
   - test/openshift-test
 notifications:

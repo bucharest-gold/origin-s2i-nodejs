@@ -23,6 +23,8 @@ Node.js versions [currently provided](https://hub.docker.com/r/bucharestgold/cen
 * **`4.8.2`**: (4.8.2, 4, 4.8, lts, Argon)
 <!-- versions.end -->
 
+Operating systems currently provided are: **Centos7**, **Fedora**, **RHEL7 Atomic** and **RHEL7**
+
 ## Usage
 
 OpenShift allows you to quickly start a build using the web console, or the CLI.

@@ -13,9 +13,11 @@ OS=${1-$OS}
 VERSION=${2-$VERSION}
 
 IFS=' ' read -r -a VERSIONS_ARRAY <<< "$VERSIONS"
-if [[ ! " ${VERSIONS_ARRAY[@]} " =~ " ${VERSION} " ]]; then
+IFS=' ' read -r -a OS_ARRAY <<< "$VALID_OS"
+if [[ ! " ${VERSIONS_ARRAY[@]} " =~ " ${VERSION} " || ! " ${OS_ARRAY[@]} " =~ " ${OS} " ]]; then
   echo "----------------------------------------"
-  echo "The valid versions are: ${VERSIONS}"
+  echo "The valid OS are: ${VALID_OS}"
+  echo "The Node.js versions are: ${VERSIONS}"
   echo "----------------------------------------"
 else
 DOCKERFILE="Dockerfile."${OS}

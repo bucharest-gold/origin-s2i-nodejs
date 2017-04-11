@@ -12,11 +12,13 @@ const fs = require('fs');
 const _ = require('underscore');
 const releases = require('../releases.json');
 
-fs.mkdir('target', (err) => {
-  if (err && err.code !== 'EEXIST') return console.log(e);
-  processFiles(`Dockerfile.${process.env.OS}`, releases);
-  processFiles(`Dockerfile.${process.env.OS}.onbuild`, releases);
-});
+if (process.env.VALID_OS.indexOf(process.env.OS) > 0) {
+  fs.mkdir('target', (err) => {
+    if (err && err.code !== 'EEXIST') return console.log(e);
+    processFiles(`Dockerfile.${process.env.OS}`, releases);
+    processFiles(`Dockerfile.${process.env.OS}.onbuild`, releases);
+  });
+}
 
 function processFiles (file, releases) {
   fs.readFile(file, 'utf-8', (err, txt) => {
