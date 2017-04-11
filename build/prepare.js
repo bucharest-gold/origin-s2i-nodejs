@@ -12,7 +12,9 @@ const fs = require('fs');
 const _ = require('underscore');
 const releases = require('../releases.json');
 
-if (process.env.VALID_OS.indexOf(process.env.OS) > 0) {
+const validOSVersions = process.env.VALID_OS.split(' ');
+
+if (validOSVersions.find(os => os === process.env.OS)) {
   fs.mkdir('target', (err) => {
     if (err && err.code !== 'EEXIST') return console.log(e);
     processFiles(`Dockerfile.${process.env.OS}`, releases);
