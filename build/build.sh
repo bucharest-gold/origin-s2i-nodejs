@@ -12,6 +12,12 @@
 OS=${1-$OS}
 VERSION=${2-$VERSION}
 
+IFS=' ' read -r -a VERSIONS_ARRAY <<< "$VERSIONS"
+if [[ ! " ${VERSIONS_ARRAY[@]} " =~ " ${VERSION} " ]]; then
+  echo "----------------------------------------"
+  echo "The valid versions are: ${VERSIONS}"
+  echo "----------------------------------------"
+else
 DOCKERFILE="Dockerfile."${OS}
 if [[ ! -z "${ONBUILD}" ]]; then
   BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
@@ -78,3 +84,4 @@ for version in ${versions}; do
 
   # popd > /dev/null
 done
+fi
