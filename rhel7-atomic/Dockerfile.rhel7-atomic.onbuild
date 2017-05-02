@@ -58,8 +58,6 @@ RUN set -ex ; \
   curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz ; \
   curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc ; \
   gpg --verify SHASUMS256.txt.asc ; \
-  grep " node-${NODE_VERSION}-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - ; \
-
   tar -zxf node-${NODE_VERSION}-linux-x64.tar.gz -C /usr/local --strip-components=1 ; \
   npm install -g npm@${NPM_VERSION} ; \
   find /usr/local/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
