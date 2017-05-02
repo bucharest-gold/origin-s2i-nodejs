@@ -1,5 +1,5 @@
 {
-  "name": "centos7-nodejs",
+  "name": "origin-s2i-nodejs",
   "homepage": "https://github.com/bucharest-gold/origin-s2i-nodejs",
   "repository": {
     "type": "git",
@@ -8,7 +8,7 @@
   "version": "0.3.0",
   "description": "NodeJS images for OpenShift / Kubernetes, based on CentOS",
   "devDependencies": {
-    "roi": "~0.14.1",
+    "roi": "~0.15.0",
     "semver": "~5.1.0",
     "standard-version": "~4.0.0",
     "underscore": "~1.8.3"
@@ -24,7 +24,8 @@
   ],
   "contributors": [
     "Ryan Jarvinen (http://ryanjarvinen.com)",
-    "Lance Ball <lball@redhat.com> (http://lanceball.com)"
+    "Lance Ball <lball@redhat.com> (http://lanceball.com)",
+    "Helio Frota (https://helio-frota.github.io/)"
   ],
   "scripts": {
     "start": "make all",
