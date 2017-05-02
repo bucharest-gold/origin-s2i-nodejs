@@ -20,7 +20,7 @@ if [[ ! " ${VERSIONS_ARRAY[@]} " =~ " ${VERSION} " || ! " ${OS_ARRAY[@]} " =~ " 
   echo "The Node.js versions are: ${VERSIONS}"
   echo "----------------------------------------"
 else
-DOCKERFILE="Dockerfile."${OS}
+DOCKERFILE=${OS}"/Dockerfile."${OS}
 if [[ ! -z "${ONBUILD}" ]]; then
   BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
   DOCKERFILE+=".onbuild"
