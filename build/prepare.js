@@ -15,10 +15,10 @@ const releases = require('../releases.json');
 const validOSVersions = process.env.VALID_OS.split(' ');
 
 if (validOSVersions.find(os => os === process.env.OS)) {
-  fs.mkdir('target', (err) => {
-    if (err && err.code !== 'EEXIST') return console.log(e);
-    processFiles(`Dockerfile.${process.env.OS}`, releases);
-    processFiles(`Dockerfile.${process.env.OS}.onbuild`, releases);
+  fs.mkdir(`target`, (err) => {
+    if (err && err.code !== 'EEXIST') return console.log(err);
+    processFiles(`${process.env.OS}/Dockerfile.${process.env.OS}`, releases);
+    processFiles(`${process.env.OS}/Dockerfile.${process.env.OS}.onbuild`, releases);
   });
 }
 
@@ -26,15 +26,19 @@ function processFiles (file, releases) {
   fs.readFile(file, 'utf-8', (err, txt) => {
     _.each(_.keys(releases), (version) => {
       const output = transform(txt, releases[version]);
-      // Try to create a directory for each version.
-      const targetDir = path.join('target', releases[version].version);
-      fs.mkdir(targetDir, (err) => {
-        // Reject with any error other than EEXIST
-        if (err && err.code !== 'EEXIST') throw(err);
-        // Write the dockerfile
-        const dockerFilePath = path.join(targetDir, file);
-        console.log(`Writing ${dockerFilePath}`);
-        fs.writeFileSync(dockerFilePath, output);
+      const osDir = path.join('target', releases[version].version);
+      fs.mkdir(osDir, (err) => {
+        // Try to create a directory for each version.
+        const targetDir = path.join(`target/${releases[version].version}`, process.env.OS);
+        fs.mkdir(targetDir, (err) => {
+          // Reject with any error other than EEXIST
+          if (err && err.code !== 'EEXIST') throw(err);
+          // Write the dockerfile
+          file = file.replace(process.env.OS + '/' , '');
+          const dockerFilePath = path.join(targetDir, file);
+          console.log(`Writing ${dockerFilePath}`);
+          fs.writeFileSync(dockerFilePath, output);
+        });
       });
     });
   });

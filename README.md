@@ -17,10 +17,10 @@ official [OpenShift Documentation](https://docs.openshift.org/latest/using_image
 Node.js versions [currently provided](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/):
 
 <!-- versions.start -->
-* **`7.8.0`**: (7.8.0, 7, 7.8, current, latest)
-* **`6.10.2`**: (6.10.2, 6, 6.10, lts, Boron)
+* **`7.9.0`**: (7.9.0, 7, 7.9, current, latest)
+* **`6.10.3`**: (6.10.3, 6, 6.10, lts, Boron)
 * **`5.12.0`**: (5.12.0, 5, 5.12)
-* **`4.8.2`**: (4.8.2, 4, 4.8, lts, Argon)
+* **`4.8.3`**: (4.8.3, 4, 4.8, lts, Argon)
 <!-- versions.end -->
 
 Operating systems currently provided are: **centos7**, **fedora**, **rhel7-atomic** and **rhel7**
