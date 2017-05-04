@@ -1,0 +1,1 @@
+FROM bucharestgold/fedora-nodejs:7.8.0
