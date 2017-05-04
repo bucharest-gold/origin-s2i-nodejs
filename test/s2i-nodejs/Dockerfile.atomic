@@ -1,0 +1,1 @@
+FROM bucharestgold/rhel7-atomic-nodejs:7.8.0

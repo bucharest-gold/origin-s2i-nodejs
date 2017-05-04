@@ -1,0 +1,34 @@
+{
+  "name": "s2i-nodejs",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Red Hat, Inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "lint": "eslint test/*.js index.js",
+    "prepublish": "nsp check",
+    "coverage": "istanbul cover tape test/*.js",
+    "dependencyCheck": "szero . --ci",
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "eslint": "~3.8.1",
+    "eslint-config-semistandard": "~7.0.0",
+    "eslint-config-standard": "~6.2.0",
+    "eslint-plugin-promise": "~3.3.0",
+    "eslint-plugin-react": "~6.4.1",
+    "eslint-plugin-standard": "~2.0.1",
+    "istanbul": "~0.4.5",
+    "nsp": "~2.6.2",
+    "tap-spec": "~4.1.1",
+    "tape": "~4.6.2",
+    "szero": "^0.7.1",
+    "standard-version": "^3.0.0"
+  },
+  "dependencies": {
+    "blipp": "^2.3.0",
+    "hapi": "^16.1.0",
+    "hapijs-status-monitor": "^0.5.0"
+  }
+}
