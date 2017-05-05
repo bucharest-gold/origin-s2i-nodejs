@@ -23,13 +23,6 @@ VERSION=${2-$VERSION}
 #fi  
 #else
 
-DOCKERFILE=${OS}"/Dockerfile."${OS}
-
-if [[ ! -z "${ONBUILD}" ]]; then
-  BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
-  DOCKERFILE+=".onbuild"
-fi
-
 # Perform docker build but append the LABEL with GIT commit id at the end
 function docker_build_with_version {
   git_version=$(git rev-parse HEAD)
@@ -54,40 +47,63 @@ function squash {
   echo "Done."
 }
 
-# Specify a VERSION variable to build a specific nodejs.org release
-# or specify a list of VERSIONS
-versions=${VERSION:-$VERSIONS}
-
-for version in ${versions}; do
-  IMAGE_NAME="${NAMESPACE}/${OS}-${BASE_IMAGE_NAME}"
-
-  if [[ ! -z "${TEST_MODE}" ]]; then
-    IMAGE_NAME+="-candidate"
+if [[ -n ${OS} && -n ${VERSION} ]]; then
+  DOCKERFILE=${OS}"/Dockerfile."${OS}
+  if [[ ! -z "${ONBUILD}" ]]; then
+    BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
+    DOCKERFILE+=".onbuild"
   fi
-
-  echo "-> Building ${IMAGE_NAME}:${version} ..."
-
-  # pushd ${BUILD_DIR} > /dev/null
-  if [ "$OS" == "fedora" -o "$OS" == "fedora-candidate" ]; then
-    docker_build_with_version Dockerfile.fedora
-  else
-    docker_build_with_version Dockerfile
-  fi
-
-  if [[ ! -z "${TEST_MODE}" ]]; then
-    IMAGE_NAME=${IMAGE_NAME} NODE_VERSION=${version} ./test/run
-
-    if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
-      echo "-> Re-tagging ${IMAGE_NAME}:${version} image to ${IMAGE_NAME%"-candidate"}:${version}"
-      docker tag -f $IMAGE_NAME:$version ${IMAGE_NAME%"-candidate"}:${version}
+  # Specify a VERSION variable to build a specific nodejs.org release
+  # or specify a list of VERSIONS
+  versions=${VERSION:-$VERSIONS}
+  for version in ${versions}; do
+    IMAGE_NAME="${NAMESPACE}/${OS}-${BASE_IMAGE_NAME}"
+    if [[ ! -z "${TEST_MODE}" ]]; then
+      IMAGE_NAME+="-candidate"
     fi
-
-    if [[ ! -z "${REGISTRY}" ]]; then
-      echo "-> Tagging image as" ${REGISTRY}/${IMAGE_NAME%"-candidate"}
-      docker tag -f $IMAGE_NAME ${REGISTRY}/${IMAGE_NAME%"-candidate"}
+    echo "-> Building ${IMAGE_NAME}:${version} ..."
+    docker_build_with_version
+    if [[ ! -z "${TEST_MODE}" ]]; then
+      IMAGE_NAME=${IMAGE_NAME} NODE_VERSION=${version} ./test/run
+      if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
+        echo "-> Re-tagging ${IMAGE_NAME}:${version} image to ${IMAGE_NAME%"-candidate"}:${version}"
+        docker tag -f $IMAGE_NAME:$version ${IMAGE_NAME%"-candidate"}:${version}
+      fi
+      if [[ ! -z "${REGISTRY}" ]]; then
+        echo "-> Tagging image as" ${REGISTRY}/${IMAGE_NAME%"-candidate"}
+        docker tag -f $IMAGE_NAME ${REGISTRY}/${IMAGE_NAME%"-candidate"}
+      fi
     fi
-  fi
-
-  # popd > /dev/null
-done
-# fi
+  done
+else
+  # Build all - when no specific OS and VERSION informed.
+  for OS in ${VALID_OS}; do
+    DOCKERFILE=${OS}"/Dockerfile."${OS}
+    if [[ ! -z "${ONBUILD}" ]]; then
+      BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
+      DOCKERFILE+=".onbuild"
+    fi
+    # Specify a VERSION variable to build a specific nodejs.org release
+    # or specify a list of VERSIONS
+    versions=${VERSION:-$VERSIONS}
+    for version in ${versions}; do
+      IMAGE_NAME="${NAMESPACE}/${OS}-${BASE_IMAGE_NAME}"
+      if [[ ! -z "${TEST_MODE}" ]]; then
+        IMAGE_NAME+="-candidate"
+      fi
+      echo "-> Building ${IMAGE_NAME}:${version} ..."
+      docker_build_with_version
+      if [[ ! -z "${TEST_MODE}" ]]; then
+        IMAGE_NAME=${IMAGE_NAME} NODE_VERSION=${version} ./test/run
+        if [[ $? -eq 0 ]] && [[ "${TAG_ON_SUCCESS}" == "true" ]]; then
+          echo "-> Re-tagging ${IMAGE_NAME}:${version} image to ${IMAGE_NAME%"-candidate"}:${version}"
+          docker tag -f $IMAGE_NAME:$version ${IMAGE_NAME%"-candidate"}:${version}
+        fi
+        if [[ ! -z "${REGISTRY}" ]]; then
+          echo "-> Tagging image as" ${REGISTRY}/${IMAGE_NAME%"-candidate"}
+          docker tag -f $IMAGE_NAME ${REGISTRY}/${IMAGE_NAME%"-candidate"}
+        fi
+      fi
+    done
+  done
+fi
