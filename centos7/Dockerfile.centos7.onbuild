@@ -40,7 +40,7 @@ RUN set -ex ; \
     56730D5401028683275BD23C23EFEFE93C4CFFFE \
   ; do \
   #  gpg -q --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
-  #  echo "$key:6" | gpg --import-ownertrust; \
+  echo "$key:6" | gpg --import-ownertrust; \
   done ; \
   INSTALL_PKGS="nss_wrapper" ; \
   yum -q -y install epel-release ; \

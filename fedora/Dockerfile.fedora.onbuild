@@ -36,7 +36,7 @@ RUN set -ex ; \
     56730D5401028683275BD23C23EFEFE93C4CFFFE \
   ; do \
   #  gpg -q --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
-  #  echo "$key:6" | gpg --import-ownertrust; \
+  echo "$key:6" | gpg --import-ownertrust; \
   done ; \
   curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz ; \
   curl -O -sSL https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt.asc ; \
