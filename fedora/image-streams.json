@@ -3,7 +3,7 @@
   "apiVersion": "v1",
   "metadata": {
     "name": "fedora-s2i-nodejs",
-    "creationTimestamp": "2017-05-02T19:48:02.694Z"
+    "creationTimestamp": "2017-05-03T14:13:16.112Z"
   },
   "spec": {
     "tags": [
@@ -190,17 +190,17 @@
         }
       },
       {
-        "name": "7.9.0",
+        "name": "7.10.0",
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.9.0, nodejs-7.9.0",
-          "supports": "nodejs:7, nodejs:7.9, nodejs",
+          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-7.10.0",
+          "supports": "nodejs:7, nodejs:7.10, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "DockerImage",
-          "name": "bucharestgold/fedora-s2i-nodejs:7.9.0"
+          "name": "bucharestgold/fedora-s2i-nodejs:7.10.0"
         }
       },
       {
@@ -208,27 +208,27 @@
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.9.0, nodejs-7",
-          "supports": "nodejs:7, nodejs:7.9, nodejs",
+          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-7",
+          "supports": "nodejs:7, nodejs:7.10, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "7.9.0"
+          "name": "7.10.0"
         }
       },
       {
-        "name": "7.9",
+        "name": "7.10",
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.9.0, nodejs-7.9",
-          "supports": "nodejs:7, nodejs:7.9, nodejs",
+          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-7.10",
+          "supports": "nodejs:7, nodejs:7.10, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "7.9.0"
+          "name": "7.10.0"
         }
       },
       {
@@ -236,13 +236,13 @@
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.9.0, nodejs-current",
-          "supports": "nodejs:7, nodejs:7.9, nodejs",
+          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-current",
+          "supports": "nodejs:7, nodejs:7.10, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "7.9.0"
+          "name": "7.10.0"
         }
       },
       {
@@ -250,13 +250,13 @@
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.9.0, nodejs-latest",
-          "supports": "nodejs:7, nodejs:7.9, nodejs",
+          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-latest",
+          "supports": "nodejs:7, nodejs:7.10, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "7.9.0"
+          "name": "7.10.0"
         }
       }
     ]

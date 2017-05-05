@@ -14,10 +14,10 @@ before_script:
   - sudo mv oc.bin /usr/bin/oc
   - sudo chmod 755 /usr/bin/oc
 script:
-  - make test OS=centos7 VERSION=7.9.0
-  - make test OS=fedora VERSION=7.9.0
-  - make onbuild OS=centos7 VERSION=7.9.0
-  - make onbuild OS=fedora VERSION=7.9.0
+  - make test OS=centos7 VERSION=7.10.0
+  - make test OS=fedora VERSION=7.10.0
+  - make onbuild OS=centos7 VERSION=7.10.0
+  - make onbuild OS=fedora VERSION=7.10.0
   - test/onbuild-test
   - test/openshift-test
 notifications:
