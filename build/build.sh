@@ -12,16 +12,19 @@
 OS=${1-$OS}
 VERSION=${2-$VERSION}
 
-IFS=' ' read -r -a VERSIONS_ARRAY <<< "$VERSIONS"
-IFS=' ' read -r -a OS_ARRAY <<< "$VALID_OS"
-if [[ ! " ${VERSIONS_ARRAY[@]} " =~ " ${VERSION} " || ! " ${OS_ARRAY[@]} " =~ " ${OS} " ]]; then
-  echo "----------------------------------------"
-  echo "The valid OS are: ${VALID_OS}"
-  echo "The Node.js versions are: ${VERSIONS}"
-  echo "----------------------------------------"
-fi  
+# OS and VERSION checks.
+#IFS=' ' read -r -a VERSIONS_ARRAY <<< "$VERSIONS"
+#IFS=' ' read -r -a OS_ARRAY <<< "$VALID_OS"
+#if [[ ! " ${VERSIONS_ARRAY[@]} " =~ " ${VERSION} " || ! " ${OS_ARRAY[@]} " =~ " ${OS} " ]]; then
+#  echo "----------------------------------------"
+#  echo "The valid OS are: ${VALID_OS}"
+#  echo "The Node.js versions are: ${VERSIONS}"
+#  echo "----------------------------------------"
+#fi  
 #else
+
 DOCKERFILE=${OS}"/Dockerfile."${OS}
+
 if [[ ! -z "${ONBUILD}" ]]; then
   BASE_IMAGE_NAME="${ONBUILD_IMAGE_NAME}"
   DOCKERFILE+=".onbuild"

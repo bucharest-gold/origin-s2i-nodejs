@@ -12,15 +12,16 @@ const fs = require('fs');
 const _ = require('underscore');
 const releases = require('../releases.json');
 
-const validOSVersions = process.env.VALID_OS.split(' ');
+// OS and VERSION checks.
+// const validOSVersions = process.env.VALID_OS.split(' ');
 
-if (validOSVersions.find(os => os === process.env.OS)) {
+// if (validOSVersions.find(os => os === process.env.OS)) {
   fs.mkdir(`target`, (err) => {
     if (err && err.code !== 'EEXIST') return console.log(err);
     processFiles(`${process.env.OS}/Dockerfile.${process.env.OS}`, releases);
     processFiles(`${process.env.OS}/Dockerfile.${process.env.OS}.onbuild`, releases);
   });
-}
+// }
 
 function processFiles (file, releases) {
   fs.readFile(file, 'utf-8', (err, txt) => {

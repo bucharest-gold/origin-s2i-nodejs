@@ -23,7 +23,7 @@ Node.js versions [currently provided](https://hub.docker.com/r/bucharestgold/cen
 * **`4.8.3`**: (4.8.3, 4, 4.8, lts, Argon)
 <!-- versions.end -->
 
-Operating systems currently provided are: **centos7**, **fedora**, **rhel7-atomic** and **rhel7**
+Operating systems currently provided are: **centos7**, **fedora**
 
 ## Usage
 

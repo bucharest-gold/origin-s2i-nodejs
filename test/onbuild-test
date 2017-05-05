@@ -9,8 +9,3 @@ docker build --pull=false -t tests2inodejscentos7 .
 echo "---> onbuild using fedora"
 docker build --pull=false --file Dockerfile.fedora -t tests2inodejsfedora .
 
-echo "---> onbuild using rhel7-atomic"
-docker build --pull=false --file Dockerfile.atomic -t tests2inodejsatomic .
-
-echo "---> onbuild using rhel7"
-docker build --pull=false --file Dockerfile.rhel7 -t tests2inodejsrhel7 .

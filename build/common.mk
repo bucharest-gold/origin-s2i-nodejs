@@ -4,10 +4,6 @@ build = build/build.sh
 
 ifeq ($(OS),fedora)
 	FROM_IMAGE := fedora
-else ifeq ($(OS),rhel7-atomic)
-	FROM_IMAGE := registry.access.redhat.com/rhel7/rhel-atomic
-else ifeq ($(OS),rhel7)
-	FROM_IMAGE := registry.access.redhat.com/rhel7
 else
 	OS := centos7
 	FROM_IMAGE := openshift/base-centos7
