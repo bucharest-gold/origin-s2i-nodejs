@@ -30,7 +30,6 @@ LABEL io.k8s.description="Platform for building and running Node.js applications
 # Download and install a binary from nodejs.org
 # Add the gpg keys listed at https://github.com/nodejs/node
 RUN set -ex ; \
-  for key in \
 #  for key in \
 #    94AE36675C464D64BAFA68DD7434390BDBE9B9C5 \
 #    FD3A5288F042B6850C66B31F09FE44734EB7990E \
