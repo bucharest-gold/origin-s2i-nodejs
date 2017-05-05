@@ -18,7 +18,7 @@ script:
   - make test OS=fedora VERSION=7.10.0
   - make onbuild OS=centos7 VERSION=7.10.0
   - make onbuild OS=fedora VERSION=7.10.0
-  - test/onbuild-test
-  - test/openshift-test
+#  - test/onbuild-test
+#  - test/openshift-test
 notifications:
   irc: "chat.freenode.net#brass-monkey"
