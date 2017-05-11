@@ -5,6 +5,6 @@ cd test/s2i-nodejs
 echo "---> onbuild using centos7"
 docker build --pull=false --file Dockerfile.centos7 -t tests2inodejscentos7 .
 
-echo "---> onbuild using fedora"
-docker build --pull=false --file Dockerfile.fedora -t tests2inodejsfedora .
+#echo "---> onbuild using fedora"
+#docker build --pull=false --file Dockerfile.fedora -t tests2inodejsfedora .
 
