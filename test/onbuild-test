@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd s2i-nodejs
+cd test/s2i-nodejs
 
 echo "---> onbuild using centos7"
 docker build --pull=false --file Dockerfile.centos7 -t tests2inodejscentos7 .
