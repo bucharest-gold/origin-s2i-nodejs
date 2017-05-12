@@ -40,7 +40,6 @@ RUN set -ex ; \
   /opt/app-root/etc/set_passwd_permissions.sh ; \
   chown -R 1001:0 /opt/app-root && chmod -R ug+rwx /opt/app-root
 
-USER 1001
 WORKDIR /opt/app-root/src
 
 # Set the default CMD to print the usage of the language image

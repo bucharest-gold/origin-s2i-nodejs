@@ -1,7 +1,6 @@
 #!/bin/bash
 
-git clone https://github.com/bucharest-gold/s2i-nodejs.git
-cd s2i-nodejs
+cd test/s2i-nodejs
 
 echo "---> onbuild using centos7"
 docker build --pull=false -t tests2inodejscentos7 .
