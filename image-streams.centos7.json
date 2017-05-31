@@ -232,17 +232,45 @@
         }
       },
       {
-        "name": "current",
+        "name": "8.x",
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-current",
-          "supports": "nodejs:7, nodejs:7.10, nodejs",
+          "tags": "builder, node, nodejs, nodejs-8.x, nodejs-8",
+          "supports": "nodejs:8, nodejs:8.x, nodejs",
+          "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
+        },
+        "from": {
+          "kind": "DockerImage",
+          "name": "bucharestgold/centos7-s2i-nodejs:8.x"
+        }
+      },      
+      {
+        "name": "8",
+        "annotations": {
+          "description": "Build and run Node.js applications",
+          "iconClass": "icon-nodejs",
+          "tags": "builder, node, nodejs, nodejs-8.x, nodejs-8",
+          "supports": "nodejs:8, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "7.10.0"
+          "name": "8.x"
+        }
+      },
+      {
+        "name": "current",
+        "annotations": {
+          "description": "Build and run Node.js applications",
+          "iconClass": "icon-nodejs",
+          "tags": "builder, node, nodejs, nodejs-8.x, nodejs-current",
+          "supports": "nodejs:8, nodejs:8.0, nodejs",
+          "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
+        },
+        "from": {
+          "kind": "ImageStreamTag",
+          "name": "8.x"
         }
       },
       {
@@ -250,13 +278,13 @@
         "annotations": {
           "description": "Build and run Node.js applications",
           "iconClass": "icon-nodejs",
-          "tags": "builder, node, nodejs, nodejs-7.10.0, nodejs-latest",
-          "supports": "nodejs:7, nodejs:7.10, nodejs",
+          "tags": "builder, node, nodejs, nodejs-8.x, nodejs-latest",
+          "supports": "nodejs:8, nodejs:8.0, nodejs",
           "sampleRepo": "https://github.com/bucharest-gold/s2i-nodejs.git"
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "7.10.0"
+          "name": "8.x"
         }
       }
     ]

@@ -17,7 +17,8 @@ official [OpenShift Documentation](https://docs.openshift.org/latest/using_image
 Node.js versions [currently provided](https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/):
 
 <!-- versions.start -->
-* **`7.10.0`**: (7.10.0, 7, 7.10, current, latest)
+* **`8.x`**: (8.x, current, latest)
+* **`7.10.0`**: (7.10.0, 7, 7.10)
 * **`6.10.3`**: (6.10.3, 6, 6.10, lts, Boron)
 * **`5.12.0`**: (5.12.0, 5, 5.12)
 * **`4.8.3`**: (4.8.3, 4, 4.8, lts, Argon)
@@ -97,13 +98,13 @@ There are several ways to make this base image and the full list of tagged Node.
 Those without admin privileges can install the latest Node.js releases within their project context with:
 
 ```
-oc create -f https://raw.githubusercontent.com/bucharest-gold/origin-s2i-nodejs/master/image-streams.json
+oc create -f https://raw.githubusercontent.com/sspeiche/origin-s2i-nodejs/master/image-streams.centos7.json
 ```
 
 To ensure that each of the latest Node.js release tags are available and displayed correctly in the web UI, try upgrading / reinstalling the image stream:
 
 ```
-oc delete is/centos7-s2i-nodejs ; oc create -f https://raw.githubusercontent.com/bucharest-gold/origin-s2i-nodejs/master/image-streams.json
+oc delete is/centos7-s2i-nodejs ; oc create -f https://raw.githubusercontent.com/sspeiche/origin-s2i-nodejs/master/image-streams.centos7.json
 ```
 
 If you've (automatically) imported this image using the [`oc new-app` example command](#usage), then you may need to clear the auto-imported image stream reference and re-install it.
@@ -113,7 +114,7 @@ If you've (automatically) imported this image using the [`oc new-app` example co
 Administrators can make these Node.js releases available globally (visible in all projects, by all users) by adding them to the `openshift` namespace:
 
 ```
-oc create -n openshift -f https://raw.githubusercontent.com/bucharest-gold/origin-s2i-nodejs/master/image-streams.json
+oc create -n openshift -f https://raw.githubusercontent.com/sspeiche/origin-s2i-nodejs/master/image-streams.centos7.json
 ```
 
 To replace [the default SCL-packaged `openshift/nodejs` image](https://hub.docker.com/r/openshift/nodejs-010-centos7/) (admin access required), run:
